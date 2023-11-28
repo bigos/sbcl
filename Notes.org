@@ -24,3 +24,6 @@ file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::289
 
 We may not have strict errors like in Haskell, but is there a chance for
 reasonable hints when dealing with object initialisation?
+
+** Interesting comments
+file:~/Programming/sbcl-my-fork/sbcl/src/pcl/methods.lisp::154
