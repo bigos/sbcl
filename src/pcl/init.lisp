@@ -156,8 +156,14 @@
     (error 'slotd-initialization-error :initarg :initform :kind :missing))
   (when (and typep (not t))
     ;; FIXME: do something.  Need SYNTACTICALLY-VALID-TYPE-SPECIFIER-P
+
     ;; TODO investigate my idea
-    )
+    (when (and (member :initialize-instance-typecheck *features*) typep)
+      ;; add asserting of slot type - only guessing here
+      (unless (typep obj type)
+        (error 'slotd-initialization-type-error :initarg :name :datum name :expected-type 'symbol)
+        )
+      ))
   (when (and allocationp (not (symbolp allocation)))
     (error 'slotd-initialization-type-error :initarg :allocation :datum allocation :expected-type 'symbol))
   (when initargsp

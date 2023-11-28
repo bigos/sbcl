@@ -8,3 +8,11 @@ we have
 
 That needs further investigation to see if we can have type checking at the make-
 instance stage.
+
+** Features
+
+pushing features
+file:~/Programming/sbcl-my-fork/sbcl/cload-xc.lisp::5
+
+** Shared-initialize
+file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::246
