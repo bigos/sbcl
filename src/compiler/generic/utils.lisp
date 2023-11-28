@@ -384,12 +384,25 @@
                       (return t)))))
              (unless any-pointer
                (return-from require-gengc-barrier-p nil))))))
-  (incf *store-barriers-emitted*)
-  t)
+  (unless (and value-tn-ref
+               (sb-c::set-slot-old-p (sb-c::vop-node (tn-ref-vop value-tn-ref))
+                                     (vop-arg-position value-tn-ref (tn-ref-vop value-tn-ref))))
+    (incf *store-barriers-emitted*)
+    t))
 
 (defun vop-nth-arg (n vop)
   (let ((ref (vop-args vop)))
     (dotimes (i n ref) (setq ref (tn-ref-across ref)))))
+
+(defun vop-arg-position (tn-ref vop)
+  (let ((types (sb-c::vop-info-arg-types (sb-c::vop-info vop))))
+    (loop with i = -1
+          for ref = (vop-args vop) then (tn-ref-across ref)
+          do
+          (loop for type = (pop types)
+                do (incf i)
+                while (typep (car types) '(cons (eql :constant))))
+          when (eq ref tn-ref) return i)))
 
 (defun length-field-shift (widetag)
   (if (= widetag instance-widetag)
@@ -509,3 +522,18 @@
         while e
         thereis (sb-c::lexenv-find 'sb-vm::.pseudo-atomic-call-out.
                                    vars :lexenv e)))
+
+;;; The SET vop should alway get a symbol that is known at compile-time
+;;; even though the compiler might have already done you a "favor" of
+;;; producing a load-TN for a random constant. This tries to undo that.
+(defun known-symbol-use-p (vop symbol)
+  (cond ((sc-is symbol constant immediate)
+         (tn-value symbol))
+        (t
+         ;; Given a DESCRIPTOR-REG you can refer back to the vop args
+         ;; to figure out what was loaded.
+         (let ((type (tn-ref-type (vop-args vop))))
+           ;; I'm pretty sure this _must_ be a MEMBER type.
+           (when (and (member-type-p type)
+                      (= (member-type-size type) 1))
+             (the symbol (first (member-type-members type))))))))
