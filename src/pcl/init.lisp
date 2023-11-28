@@ -156,6 +156,7 @@
     (error 'slotd-initialization-error :initarg :initform :kind :missing))
   (when (and typep (not t))
     ;; FIXME: do something.  Need SYNTACTICALLY-VALID-TYPE-SPECIFIER-P
+    ;; TODO investigate my idea
     )
   (when (and allocationp (not (symbolp allocation)))
     (error 'slotd-initialization-type-error :initarg :allocation :datum allocation :expected-type 'symbol))
