@@ -1,5 +1,11 @@
 * Notes
 
+** SBCL links
+http://www.sbcl.org/links.html
+
+http://www.sbcl.org/sbcl-internals/
+
+** Notes
 In this method:
 file:./src/pcl/init.lisp::133
 
