@@ -19,3 +19,8 @@ file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::246
 
 checking initargs values, I may need to check for the presence of required arguments here
 file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::289
+
+** Warnings or errors
+
+We may not have strict errors like in Haskell, but is there a chance for
+reasonable hints when dealing with object initialisation?
