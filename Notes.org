@@ -1,9 +1,10 @@
 * Notes
 
 In this method:
-[[file:sbcl/src/pcl/init.lisp::defmethod initialize-instance :before ((slotd slot-definition]]
+file:./src/pcl/init.lisp::133
+
 we have
-[[file:sbcl/src/pcl/init.lisp::when (and typep (not t))]]
+[[file:./src/pcl/init.lisp::when (and typep (not t))]]
 
 That needs further investigation to see if we can have type checking at the make-
 instance stage.
