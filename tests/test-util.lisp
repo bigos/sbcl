@@ -1,3 +1,8 @@
+#+gc-stress
+(sb-thread:make-thread (lambda ()
+                         (loop (gc :full t) (sleep 0.001)))
+                       :name "gc stress")
+
 (defpackage :test-util
   (:use :cl :sb-ext)
   (:export #:with-test #:report-test-status #:*failures*
@@ -1058,3 +1063,4 @@
   (funcall
    (compile nil
             `(lambda () (sb-kernel:%make-funcallable-instance ,n)))))
+
