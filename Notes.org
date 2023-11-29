@@ -19,6 +19,8 @@ https://www.lrde.epita.fr/~didier/research/publications/papers/verna.23.els.pdf
 
 https://pvk.ca/Blog/2013/04/13/starting-to-hack-on-sbcl/
 
+https://www.lispworks.com/documentation/HyperSpec/Body/f_shared.htm#shared-initialize
+
 ** Notes
 In this method:
 file:./src/pcl/init.lisp::133
