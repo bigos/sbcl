@@ -258,7 +258,6 @@
                          (funcall initfun)))
                  (unless (or (not initfun)
                              (slot-boundp-using-class class instance slotd))
-                   (format t "JP class ~S slotd ~S" class slotd)
                    (setf (slot-value-using-class class instance slotd)
                          (funcall initfun)))))))
     (let ((class (class-of instance)))
