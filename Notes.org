@@ -42,6 +42,13 @@ file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::246
 checking initargs values, I may need to check for the presence of required arguments here
 file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::289
 
+if only
+file:~/Programming/sbcl-my-fork/sbcl/src/pcl/init.lisp::244
+I could find the creation of unbound slots at make instance and have a warning when I need it
+
+could that be answer to my problem?
+https://stackoverflow.com/questions/24348474/why-can-clos-slots-be-unbound
+
 ** Warnings or errors
 
 We may not have strict errors like in Haskell, but is there a chance for
